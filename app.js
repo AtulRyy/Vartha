@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
 const User = require('./models/user')
+const Article=require('./models/articleData')
 const mongoose=require('mongoose')
-const loginRoute = require('./routes/loginRoute')
-const homeRoute=require('./routes/homeRoute')
 const dotenv = require('dotenv')
 dotenv.config();
+
+
+const loginRoute = require('./routes/loginRoute')
+const homeRoute=require('./routes/homeRoute')
+const createRoute=require('./routes/createRoute')
+
+
 
 app.set("view engine", "ejs")
 app.use('/static', express.static("public"))
@@ -19,11 +25,12 @@ console.log("mongodb succefully connected");
     console.log("mongodb error",err);
 }})
 
-// const newUser = new User({ name: 'atulry', password: 'nik009' })
+// const newUser = new User({ name: 'imnikhilmathew', password: 'nik009' })
 // newUser.save()
 // .then(savedUser=>{
 //     console.log("new user added",savedUser);
 // })
+
 
 
 app.get('/',(req,res)=>{
@@ -32,6 +39,8 @@ app.get('/',(req,res)=>{
 app.use('/home',homeRoute)
 
 app.use('/login', loginRoute)
+
+app.use('/create-article',createRoute)
 
 
 
