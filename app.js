@@ -42,7 +42,15 @@ app.use('/login', loginRoute)
 
 app.use('/create-article',createRoute)
 
-
+app.get('/api/data', async(req,res)=>{
+try {
+const data=await Article.find();
+res.json(data)
+}
+catch(err){
+console.error(err);
+}
+})
 
 
 app.listen(3000, console.log("server is now running at port 3000"))

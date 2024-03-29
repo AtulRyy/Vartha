@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/page2.dart';
 import 'package:untitled/page3.dart';
+import  'package:untitled/models/articles.dart';
+import 'package:untitled/services/remote.dart';
 class page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,9 +42,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Welcome>? posts;
+  var isLoaded=false;
+
+
   bool isExpanded = false;
   bool isBookmarkPressed = false;
   bool isSharePressed = false;
+
+  @override
+  void initState() {
+
+    super.initState();
+    getData();
+  }
+
+  getData() async{
+    posts=await Remote().getPosts();
+    if(posts!=null){
+      isLoaded=true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    'രാജീവ് ചന്ദ്രശേഖറുമായി കൂട്ടു ചേർന്നപ്പോൾ അന്വേഷണം നിലച്ചു; ഇ.പി പറയുന്നത് സുരേന്ദ്രൻ പോലും പറയാത്തത..',
+                    posts![1].heading,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
