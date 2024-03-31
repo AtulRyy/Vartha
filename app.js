@@ -33,6 +33,20 @@ app.use('/home',homeRoute)
 
 app.use('/login', loginRoute)
 
+<<<<<<< HEAD
+=======
+app.use('/create-article',createRoute)
+
+app.get('/api/data',async(req,res)=>{
+    try{
+        const response=await Article.find();
+        res.json(response);
+    }catch(err){
+        console.error(err);
+    }
+})
+
+>>>>>>> dc-news-page
 
 
 
