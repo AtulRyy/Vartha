@@ -8,209 +8,139 @@ class PersonalizePage extends StatefulWidget {
 }
 
 class _PersonalizePageState extends State<PersonalizePage> {
-  bool isPressed1=false;
-  bool isPressed2=false;
-  bool isPressed3=false;
-  bool isPressed4=false;
-  bool isPressed5=false;
-  bool isPressed6=false;
+  bool isPressed1 = false;
+  bool isPressed2 = false;
+  bool isPressed3 = false;
+  bool isPressed4 = false;
+  bool isPressed5 = false;
+  bool isPressed6 = false;
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 60),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 80),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const Text(
-                    "Hello, Aromal!",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 60),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 80),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Hello, Aromal!",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: screenWidth * 0.06, // Responsive font size
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Choose your interests..",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                    SizedBox(height: 10),
+                    Text(
+                      "Choose your interests..",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: screenWidth * 0.06, // Responsive font size
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Wrap(
-                    spacing: 20,
-                    runSpacing: 10,
-                    alignment: WrapAlignment.start,
-                    children:  <Widget>[
-                      ElevatedButton(
-                        onPressed: () {
+                    SizedBox(height: 20),
+                    Wrap(
+                      spacing: screenWidth * 0.04, // Responsive spacing
+                      runSpacing: screenWidth * 0.03, // Responsive spacing
+                      alignment: WrapAlignment.start,
+                      children: <Widget>[
+                        buildElevatedButton('Sports', isPressed1, () {
                           setState(() {
                             isPressed1 = !isPressed1;
                           });
-                        },
-                        child: Text('Sports',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                          side: BorderSide(color: Colors.blue, width: 2),
-                          primary: isPressed1 ? Colors.blue[100] : Colors.white,
-
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
+                        }),
+                        buildElevatedButton('Politics', isPressed2, () {
                           setState(() {
                             isPressed2 = !isPressed2;
                           });
-                        },
-                        child: Text('Politics',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          side: BorderSide(color: Colors.blue, width: 2),
-                          primary: isPressed2 ? Colors.blue[100] : Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
+                        }),
+                        buildElevatedButton('Entertainment', isPressed3, () {
                           setState(() {
                             isPressed3 = !isPressed3;
                           });
-                        },
-                        child: Text('Entertainment',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          side: BorderSide(color: Colors.blue, width: 2),
-                          primary: isPressed3 ? Colors.blue[100] : Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
+                        }),
+                        buildElevatedButton('Technology', isPressed4, () {
                           setState(() {
                             isPressed4 = !isPressed4;
                           });
-                        },
-                        child: Text('Technology',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          side: BorderSide(color: Colors.blue, width: 2),
-                          primary: isPressed4 ? Colors.blue[100] : Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
+                        }),
+                        buildElevatedButton('Weather', isPressed5, () {
                           setState(() {
                             isPressed5 = !isPressed5;
                           });
-                        },
-                        child: Text('Weather',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          side: BorderSide(color: Colors.blue, width: 2),
-                          primary: isPressed5 ? Colors.blue[100] : Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
+                        }),
+                        buildElevatedButton('Food', isPressed6, () {
                           setState(() {
                             isPressed6 = !isPressed6;
                           });
-                        },
-                        child: Text('Food',
+                        }),
+                      ],
+                    ),
+                    SizedBox(height: 240),
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          'SUBMIT',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 13,
+                            fontSize: screenWidth * 0.05, // Responsive font size
                             fontWeight: FontWeight.bold,
-                          ),),
+                          ),
+                        ),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0),
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          side: BorderSide(color: Colors.blue, width: 2),
-                          primary: isPressed6 ? Colors.blue[100] : Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 40,),
-                  Center(
-                    child: ElevatedButton(onPressed: (){},
-                        child:  Text('SUBMIT',
-                            style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                          style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                         ),
-                          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.08,
+                              vertical: screenWidth * 0.04),
                           side: BorderSide(color: Colors.blue, width: 2),
                           primary: Colors.lightBlue,
-
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
+  }
 
-
-
+  Widget buildElevatedButton(String text, bool isPressed, VoidCallback onPressed) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        side: BorderSide(color: Colors.blue, width: 2),
+        primary: isPressed ? Colors.blue[100] : Colors.white,
+      ),
+    );
   }
 }
