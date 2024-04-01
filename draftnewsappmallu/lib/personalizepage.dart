@@ -31,7 +31,7 @@ class _PersonalizePageState extends State<PersonalizePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Text(
-                    "Hello, mallus!",
+                    "Hello, Aromal!",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 30,
@@ -62,7 +62,7 @@ class _PersonalizePageState extends State<PersonalizePage> {
                         child: Text('Sports',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),),
                         style: ElevatedButton.styleFrom(
@@ -81,10 +81,10 @@ class _PersonalizePageState extends State<PersonalizePage> {
                             isPressed2 = !isPressed2;
                           });
                         },
-                        child: Text('Information Technology',
+                        child: Text('Politics',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),),
                         style: ElevatedButton.styleFrom(
@@ -102,10 +102,10 @@ class _PersonalizePageState extends State<PersonalizePage> {
                             isPressed3 = !isPressed3;
                           });
                         },
-                        child: Text('Bollywood',
+                        child: Text('Entertainment',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),),
                         style: ElevatedButton.styleFrom(
@@ -123,10 +123,10 @@ class _PersonalizePageState extends State<PersonalizePage> {
                             isPressed4 = !isPressed4;
                           });
                         },
-                        child: Text('Interest4',
+                        child: Text('Technology',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),),
                         style: ElevatedButton.styleFrom(
@@ -144,10 +144,10 @@ class _PersonalizePageState extends State<PersonalizePage> {
                             isPressed5 = !isPressed5;
                           });
                         },
-                        child: Text('Interest5',
+                        child: Text('Weather',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),),
                         style: ElevatedButton.styleFrom(
@@ -165,10 +165,10 @@ class _PersonalizePageState extends State<PersonalizePage> {
                             isPressed6 = !isPressed6;
                           });
                         },
-                        child: Text('Foreign Affairs',
+                        child: Text('Food',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),),
                         style: ElevatedButton.styleFrom(
