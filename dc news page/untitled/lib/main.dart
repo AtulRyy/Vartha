@@ -53,7 +53,7 @@ class _Page1State extends State<Page1> {
                 if (currentIndex < dataList.length - 1) {
                   currentIndex++;
                 }
-                dataList[currentIndex]['isExpanded'] = false; // Reset isExpanded
+                dataList[currentIndex]['isExpanded'] = false;
               });
             } else if (details.primaryVelocity! > 0) {
               // Swiped right
@@ -61,7 +61,7 @@ class _Page1State extends State<Page1> {
                 if (currentIndex > 0) {
                   currentIndex--;
                 }
-                dataList[currentIndex]['isExpanded'] = false; // Reset isExpanded
+                dataList[currentIndex]['isExpanded'] = false;
               });
             }
           },
@@ -79,7 +79,7 @@ class _Page1State extends State<Page1> {
               ),
 
               Positioned(
-                top: 390,
+                top: 350,
                 left: 0,
                 right: 0,
                 child: Container(
@@ -99,7 +99,7 @@ class _Page1State extends State<Page1> {
                         child: Text(
                           dataList[currentIndex]['title'],
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -110,7 +110,7 @@ class _Page1State extends State<Page1> {
                         child: Text(
                           dataList[currentIndex]['description'],
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -120,7 +120,7 @@ class _Page1State extends State<Page1> {
                 ),
               ),
               Positioned(
-                top: 760,
+                top: 720,
                 left: 0,
                 right: 0,
                 child: GestureDetector(
@@ -131,7 +131,7 @@ class _Page1State extends State<Page1> {
                     });
                   },
                   child: Container(
-                    height: 90,
+                    height: 100,
                     width: 430,
                     decoration: BoxDecoration(
                       color: Color(0xFF1B3358),
@@ -150,11 +150,11 @@ class _Page1State extends State<Page1> {
               ),
               if (dataList[currentIndex]['isExpanded'] ?? false)
                 Positioned(
-                  top: 760, // Adjust position as needed
+                  top: 720, // Adjust position as needed
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: 90,
+                    height: 100,
                     width: 430,
                     color: Colors.white,
                     child: Row(
