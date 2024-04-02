@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/models/articles.dart';
+import 'package:untitled/services/api.dart';
 void main() {
   runApp(Page1());
 }
@@ -8,7 +10,22 @@ class Page1 extends StatefulWidget {
 }
 
 class _Page1State extends State<Page1> {
+
+  late Future<List<Article>> _futureArticles;
+  List<Map<String, dynamic>> dataL = [];
+  @override
+  void initstate(){
+    super.initState();
+    _futureArticles=ArticleApi.fetchArticle();
+    _futureArticles.then((articles) {
+      setState(() {
+        dataL = articles.map((article) => article.toMap()).toList();
+      });
+    });
+  }
+
   int currentIndex = 0;
+
   List<Map<String, dynamic>> dataList = [
     {
       'title': 'രാജീവ് ചന്ദ്രശേഖറുമായി കൂട്ടു ചേർന്നപ്പോൾ അന്വേഷണം നിലച്ചു; ഇ.പി പറയുന്നത് സുരേന്ദ്രൻ പോലും പറയാത്തത..',
