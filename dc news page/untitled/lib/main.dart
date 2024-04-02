@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/models/articles.dart';
 import 'package:untitled/services/api.dart';
+import 'dart:convert';
 void main() {
   runApp(Page1());
 }
@@ -13,13 +14,14 @@ class _Page1State extends State<Page1> {
 
   late Future<List<Article>> _futureArticles;
   List<Map<String, dynamic>> dataL = [];
+
   @override
-  void initstate(){
+  void initstate() {
     super.initState();
-    _futureArticles=ArticleApi.fetchArticle();
+    _futureArticles = ArticleApi.fetchArticle();
     _futureArticles.then((articles) {
       setState(() {
-        dataL = articles.map((article) => article.toMap()).toList();
+        dataL = articles.map((article) => article.toJson()).toList();
       });
     });
   }
@@ -58,161 +60,19 @@ class _Page1State extends State<Page1> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: GestureDetector(
-          onHorizontalDragEnd: (details) {
-            if (details.primaryVelocity! < 0) {
-              // Swiped left
-              setState(() {
-                if (currentIndex < dataList.length - 1) {
-                  currentIndex++;
-                }
-                dataList[currentIndex]['isExpanded'] = false;
-              });
-            } else if (details.primaryVelocity! > 0) {
-              // Swiped right
-              setState(() {
-                if (currentIndex > 0) {
-                  currentIndex--;
-                }
-                dataList[currentIndex]['isExpanded'] = false;
-              });
-            }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Articles'),
+      ),
+      body: Center(
+        child: ListView.builder(
+          itemCount: dataL.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(dataL[index]['heading']),
+              subtitle: Text(dataL[index]['content']),
+            );
           },
-          child: Stack(
-            children: [
-              Positioned(
-                top: 36,
-                left: 0,
-                right: 0,
-                child: Image.asset(
-                  dataList[currentIndex]['imagePath'],
-                  height: 456,
-                  fit: BoxFit.cover,
-                ),
-              ),
-
-              Positioned(
-                top: 350,
-                left: 0,
-                right: 0,
-                child: Container(
-                  padding: EdgeInsets.only(top: 10, left: 2, right: 2),
-                  height: 464,
-                  width: 430,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          dataList[currentIndex]['title'],
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          dataList[currentIndex]['description'],
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 720,
-                left: 0,
-                right: 0,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      dataList[currentIndex]['isExpanded'] =
-                      !(dataList[currentIndex]['isExpanded'] ?? false);
-                    });
-                  },
-                  child: Container(
-                    height: 100,
-                    width: 430,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF1B3358),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        (dataList[currentIndex]['isExpanded'] ?? false)
-                            ? Icons.keyboard_arrow_down
-                            : Icons.keyboard_arrow_up,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              if (dataList[currentIndex]['isExpanded'] ?? false)
-                Positioned(
-                  top: 720, // Adjust position as needed
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: 100,
-                    width: 430,
-                    color: Colors.white,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              dataList[currentIndex]['isBookmarkPressed'] =
-                              !(dataList[currentIndex]
-                              ['isBookmarkPressed'] ??
-                                  false);
-                            });
-                          },
-                          icon: Icon((dataList[currentIndex]
-                          ['isBookmarkPressed'] ??
-                              false)
-                              ? Icons.bookmark
-                              : Icons.bookmark_outline),
-                          iconSize: 40,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              dataList[currentIndex]['isSharePressed'] =
-                              !(dataList[currentIndex]['isSharePressed'] ??
-                                  false);
-                            });
-                          },
-                          icon: Icon((dataList[currentIndex]['isSharePressed'] ??
-                              false)
-                              ? Icons.share_rounded
-                              : Icons.share_outlined),
-                          iconSize: 40,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
-          ),
         ),
       ),
     );
