@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PersonalizePage extends StatefulWidget {
-  const PersonalizePage({super.key});
+  const PersonalizePage({Key? key}) : super(key: key);
 
   @override
   State<PersonalizePage> createState() => _PersonalizePageState();
 }
 
 class _PersonalizePageState extends State<PersonalizePage> {
-  bool isPressed1 = false;
-  bool isPressed2 = false;
-  bool isPressed3 = false;
-  bool isPressed4 = false;
-  bool isPressed5 = false;
-  bool isPressed6 = false;
+  List<String> interests = ['Sports', 'Politics', 'Entertainment', 'Technology', 'Weather', 'Food' , 'Local News'];
+  List<bool> isPressedList = List.filled(7, false);
+  List<String> selectedInterests = [];
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,7 @@ class _PersonalizePageState extends State<PersonalizePage> {
                       "Hello, Aromal!",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: screenWidth * 0.06, // Responsive font size
+                        fontSize: screenWidth * 0.06,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -46,57 +43,44 @@ class _PersonalizePageState extends State<PersonalizePage> {
                       "Choose your interests..",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: screenWidth * 0.06, // Responsive font size
+                        fontSize: screenWidth * 0.06,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 20),
                     Wrap(
-                      spacing: screenWidth * 0.04, // Responsive spacing
-                      runSpacing: screenWidth * 0.03, // Responsive spacing
-                      alignment: WrapAlignment.start,
-                      children: <Widget>[
-                        buildElevatedButton('Sports', isPressed1, () {
-                          setState(() {
-                            isPressed1 = !isPressed1;
-                          });
-                        }),
-                        buildElevatedButton('Politics', isPressed2, () {
-                          setState(() {
-                            isPressed2 = !isPressed2;
-                          });
-                        }),
-                        buildElevatedButton('Entertainment', isPressed3, () {
-                          setState(() {
-                            isPressed3 = !isPressed3;
-                          });
-                        }),
-                        buildElevatedButton('Technology', isPressed4, () {
-                          setState(() {
-                            isPressed4 = !isPressed4;
-                          });
-                        }),
-                        buildElevatedButton('Weather', isPressed5, () {
-                          setState(() {
-                            isPressed5 = !isPressed5;
-                          });
-                        }),
-                        buildElevatedButton('Food', isPressed6, () {
-                          setState(() {
-                            isPressed6 = !isPressed6;
-                          });
-                        }),
-                      ],
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: List.generate(
+                        interests.length,
+                            (index) => buildElevatedButton(
+                          interests[index],
+                          isPressedList[index],
+                              () {
+                            setState(() {
+                              isPressedList[index] = !isPressedList[index];
+                              if (isPressedList[index]) {
+                                selectedInterests.add(interests[index]);
+                              } else {
+                                selectedInterests.remove(interests[index]);
+                              }
+                            });
+                          },
+                        ),
+                      ),
                     ),
                     SizedBox(height: 240),
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Use the selectedInterests list for your backend operations
+                          print(selectedInterests);
+                        },
                         child: Text(
                           'SUBMIT',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: screenWidth * 0.05, // Responsive font size
+                            fontSize: screenWidth * 0.05,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -105,8 +89,9 @@ class _PersonalizePageState extends State<PersonalizePage> {
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.08,
-                              vertical: screenWidth * 0.04),
+                            horizontal: screenWidth * 0.08,
+                            vertical: screenWidth * 0.04,
+                          ),
                           side: BorderSide(color: Colors.blue, width: 2),
                           primary: Colors.lightBlue,
                         ),
@@ -122,7 +107,8 @@ class _PersonalizePageState extends State<PersonalizePage> {
     );
   }
 
-  Widget buildElevatedButton(String text, bool isPressed, VoidCallback onPressed) {
+  Widget buildElevatedButton(
+      String text, bool isPressed, VoidCallback onPressed) {
     return ElevatedButton(
       onPressed: onPressed,
       child: Text(
